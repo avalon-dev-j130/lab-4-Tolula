@@ -1,9 +1,8 @@
 package ru.avalon.java.udp;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketAddress;
+import java.io.UnsupportedEncodingException;
+import java.net.*;
 
 /**
  * Упражнение, направленное на выработку умений, связанных
@@ -29,7 +28,6 @@ public final class UdpSender {
         // 7. Освобождаем ресурсы
         socket.close();
     }
-
     /**
      * Возвращает сообщение.
      *
@@ -39,7 +37,8 @@ public final class UdpSender {
         /*
          * TODO Реализовать метод prepareMessage класса UdpSender
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return "Hello over UDP protocol!";
+        //throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     /**
@@ -51,9 +50,9 @@ public final class UdpSender {
         /*
          * TODO Реализовать метод prepareAddress класса UdpSender
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return new InetSocketAddress("localhost", 8080);
+        //throw new UnsupportedOperationException("Not implemented yet!");
     }
-
     /**
      * Возвращает сокет, описывающий взаимодействие по протоколу UDP.
      *
@@ -64,7 +63,8 @@ public final class UdpSender {
         /*
          * TODO Реализовать метод createSocket класса UdpSender
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return new DatagramSocket();
+        //throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     /**
@@ -74,11 +74,12 @@ public final class UdpSender {
      *
      * @return экземпляр типа {@link DatagramPacket}.
      */
-    private static DatagramPacket pack(String message) {
+    private static DatagramPacket pack(String message) throws UnsupportedEncodingException {
         /*
          * TODO Реализовать метод pack класса UdpSender
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        byte[] datagram = message.getBytes("UTF-8");
+        return new DatagramPacket(datagram, datagram.length);
+        //throw new UnsupportedOperationException("Not implemented yet!");
     }
-
 }
